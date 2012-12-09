@@ -10,13 +10,31 @@
     <!-- add our i18n resource -->
     <resource type="i18n" name="i18n" location="jira-example-plugin"/>
     
+    <web-item key="myLink" section="system.top.navigation.bar" weight="40" application="jira">
+        <label key="Hello World Link"/>
+        <link linkId="myLinkId">/plugins/servlet/test</link>
+    </web-item>
+
+    <servlet name="example-servlet" class="com.example.ExampleServlet" key="test">
+        <url-pattern>/test</url-pattern>
+    </servlet>
+
     <!-- add our web resources -->
     <web-resource key="jira-example-plugin-resources" name="jira-example-plugin Web Resources">
         <dependency>com.atlassian.auiplugin:ajs</dependency>
         
         <resource type="download" name="jira-example-plugin.css" location="/css/jira-example-plugin.css"/>
-        <resource type="download" name="jira-example-plugin.js" location="/css/jira-example-plugin.js"/>
+        <resource type="download" name="jira-example-plugin.js" location="/js/jira-example-plugin.js"/>
         <resource type="download" name="images/" location="/images"/>
+
+        <transformation extension="soy">
+            <transformer key="soyTransformer" />
+        </transformation>
+
+        <resource type="download" name="PluginController.js" location="js/PluginController.js" />
+        <resource type="download" name="PluginModel.js" location="js/PluginModel.js" />
+        <resource type="download" name="PluginView.soy.js" location="templates/PluginView.soy" />
+        <resource type="download" name="PluginView.js" location="js/PluginView.js" />
 
         <context>jira-example-plugin</context>
     </web-resource>
@@ -28,5 +46,6 @@
     
     <!-- import from the product container -->
     <component-import key="applicationProperties" interface="com.atlassian.sal.api.ApplicationProperties" />
+    <component-import key="velocity-renderer" interface="com.atlassian.templaterenderer.TemplateRenderer" />
     
 </atlassian-plugin>

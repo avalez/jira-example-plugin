@@ -1,0 +1,11 @@
+<html>
+    <head>
+        <meta name="decorator" content="atl.general" />
+        $webResourceManager.requireResource("com.example.jira-example-plugin:jira-example-plugin-resources")
+        <title>JIRA Example Plugin</title>
+    </head>
+    <body>
+        <div id="main-container" class="aui-panel">
+        </div>
+    </body>
+</html>
